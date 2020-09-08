@@ -24,6 +24,23 @@ To run this app, the following must be installed. The links will take you to ins
 
 [vips](https://github.com/Nakilon/dhash-vips)
 
+### Instructions to install and run app
+
+```
+git clone 'https://github.com/bleung9/image_repo.git' bleung9_image_repo
+bundle install
+yarn install --check-files
+
+```
+
+Inside the app directory:
+
+Set up database with:
+```
+rake db:create
+rake db:migrate
+```
+
 A background Elasticsearch server must be running for document indexing to work, and for tests to run. To start the Elasticsearch server:
 
 macOS: `brew services start elastic/tap/elasticsearch-full` or `brew services start elasticsearch`
@@ -50,23 +67,6 @@ Go to `http://localhost:9200/` to verify that it started successfully. You shoul
   },
   tagline: "You Know, for Search"
 }
-```
-
-### Instructions to install and run app
-
-```
-git clone 'https://github.com/bleung9/image_repo.git' bleung9_image_repo
-bundle install
-yarn install --check-files
-
-```
-
-Inside the app directory:
-
-Set up database with:
-```
-rake db:create
-rake db:migrate
 ```
 
 Run the server with `rails s`.
