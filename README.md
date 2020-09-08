@@ -58,6 +58,12 @@ git clone 'https://github.com/bleung9/image_repo.git' bleung9_image_repo
 bundle install
 yarn install --check-files
 
+```
+
+Inside the app directory:
+
+Set up database with:
+```
 rake db:create
 rake db:migrate
 ```
