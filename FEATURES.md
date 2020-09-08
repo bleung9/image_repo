@@ -12,6 +12,8 @@ Users can filter existing images in the database for height, width, extension, a
 
 Image similarity search is completely separate from the previous filters.
 
+Note that because this is a backend position I'm applying for, the interface is quite barebones.
+
 ## Future improvements
 
 #### Background job processing
