@@ -17,8 +17,11 @@ See [FEATURES.md](/FEATURES.md) for a more detailed breakdown of features.
 To run this app, the following must be installed. The links will take you to installation instructions for MacOS or Linux.
 
 [Elasticsearch for MacOS](https://www.elastic.co/guide/en/elasticsearch/reference/current/brew.html#brew) or [Elasticsearch for Linux](https://www.elastic.co/guide/en/elasticsearch/reference/current/deb.html)
+
 [ImageMagick](https://imagemagick.org/script/download.php)
+
 [RTesseract](https://github.com/tesseract-ocr/tesseract/wiki)
+
 [vips](https://github.com/Nakilon/dhash-vips)
 
 A background Elasticsearch server must be running for document indexing to work, and for tests to run. To start the Elasticsearch server:
@@ -60,5 +63,7 @@ rake db:migrate
 ```
 
 Run the server with `rails s`.
+
 Open console with `rails c`.
+
 Run all tests with `rspec`
