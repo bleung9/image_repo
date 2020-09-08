@@ -27,6 +27,7 @@ To run this app, the following must be installed. The links will take you to ins
 A background Elasticsearch server must be running for document indexing to work, and for tests to run. To start the Elasticsearch server:
 
 macOS: `brew services start elastic/tap/elasticsearch-full` or `brew services start elasticsearch`
+
 Linux: `sudo -i service elasticsearch start`
 
 Go to `http://localhost:9200/` to verify that it started successfully. You should see something like this:
