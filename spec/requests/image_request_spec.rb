@@ -76,6 +76,19 @@ RSpec.describe "Images", type: :request do
       expect(assigns(:images).count).to eq(0)
     end
 
+    it "returns no images with width 1337 and height 1520" do
+      get images_url, params: { search_width: 1337, search_height: 1520 }
+
+      expect(assigns(:images).count).to eq(0)
+    end
+
+    it "returns one image with width 1520 and height 1232" do
+      get images_url, params: { search_width: 1520, search_height: 1232 }
+
+      expect(assigns(:images).count).to eq(1)
+      expect(assigns(:images).first.image.file.filename).to eq("surprised_pikachu.png")
+    end
+
     it "returns two images with format PNG" do
       get images_url, params: { search_format: "png" }
       expect(assigns(:images).count).to eq(2)

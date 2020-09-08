@@ -16,7 +16,7 @@ Image similarity search is completely separate from the previous filters.
 
 #### Background job processing
 
-In production, image submission, OCR, Elasticsearch indexing and image hashing must be done in a background job server. OCR and image hashing are expensive computations, and this is reflected in the length of time it takes to run my test suite of just 16 examples (to be discussed later). This would be similar to what Google Drive does, where users can continue browsing their drive while files are being uploaded in the background.
+In production, image submission, OCR, Elasticsearch indexing and image hashing must be done in a background job server. OCR and image hashing are expensive computations, and this is reflected in the length of time it takes to run my test suite of just 18 examples (to be discussed later). This would be similar to what Google Drive does, where users can continue browsing their drive while files are being uploaded in the background.
 
 #### Inefficient search for image similarity
 
@@ -24,7 +24,7 @@ This app computes the Hamming distance against every image in the database. Of c
 
 #### Speeding up tests
 
-The test suite of 16 tests right now take a long time to run. All of them actually call all the gems that were previously mentioned. An alternate approach is to stub those responses to speed up the tests, and write separate tests for the functionality of each of those gems. These can be run whenever a gem is updated or the version has changed to ensure that no behavior has unexpectedly changed.
+The test suite of 18 examples right now take a long time to run. All of them actually call all the gems that were previously mentioned. An alternate approach is to stub those responses to speed up the tests, and write separate tests for the functionality of each of those gems. These can be run whenever a gem is updated or the version has changed to ensure that no behavior has unexpectedly changed.
 
 #### Deleting and updating images
 
