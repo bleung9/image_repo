@@ -69,7 +69,7 @@ Go to `http://localhost:9200/` to verify that it started successfully. You shoul
 }
 ```
 
-Run the server with `rails s`.
+Run the server with `rails s`. Go to `http://localhost:3000/` to run the app.
 
 Open console with `rails c`.
 
