@@ -4,22 +4,29 @@ class ImagesController < ApplicationController
   before_action :set_image, only: [:show]
 
   def index
+    ids = Image.search_text(params[:search_text]).records.pluck(:id) unless params[:search_text].blank?
     search_params = { 
       extension: params[:search_format]&.upcase&.strip,
       width: params[:search_width]&.strip,
       height: params[:search_height]&.strip,
-      id: (Image.search_text(params[:search_text]).records.pluck(:id) unless params[:search_text].blank?)
+      id: ids
     }.reject { |k, v| v.blank? }
-
-    @images = search_params.empty? ? Image.all : Image.where(search_params)
+    
+    if params[:search_text].present? && ids.blank?
+      @images = []
+    elsif params[:search_text].present? || search_params.present?
+      @images = Image.where(search_params)
+    else
+      @images = Image.all
+    end
   end
 
   def show
   end
 
   def get_similar_images
-    hash = DHashVips::IDHash.fingerprint(params[:image].path)
-    ids = Image.all.to_a.filter { |image| DHashVips::IDHash.distance(hash, image.idhash.to_i) < 25 }.map(&:id)
+    hash = Image.run_idhash(params[:image]&.path)
+    ids = Image.all.to_a.filter { |image| Image.similar_images?(hash, image.idhash.to_i) }.map(&:id)
     @images = Image.find(ids)
   end
 
@@ -33,9 +40,9 @@ class ImagesController < ApplicationController
     respond_to do |format|
       if @image.save
         path = @image.image.file.file
-        current_image = @image.open_image(path)
-        ocr = @image.run_ocr(path)
-        idhash = @image.run_idhash(path)
+        current_image = Image.open_image(path)
+        ocr = Image.run_ocr(path)
+        idhash = Image.run_idhash(path)
 
         @image.update(
           width: current_image[:width],

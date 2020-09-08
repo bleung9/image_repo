@@ -1,24 +1,64 @@
-# README
+# Image Repo challenge for Winter 2021 Shopify internship
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This image repo allows anyone to submit an image to be uploaded to the database. Images in the database can be searched for the following characteristics:
 
-Things you may want to cover:
+- width
+- height
+- extension
+- text in the image
+- find all similar images to an uploaded image (doesn't get saved)
 
-* Ruby version
+This app uses the _latest_ versions of both Ruby and Rails, Rails 6.0.3.2 and Ruby ruby 2.7.1p83.
 
-* System dependencies
+See [FEATURES.md](/FEATURES.md) for a more detailed breakdown of features.
 
-* Configuration
+### Dependencies
 
-* Database creation
+To run this app, the following must be installed. The links will take you to installation instructions for MacOS or Linux.
 
-* Database initialization
+[Elasticsearch for MacOS](https://www.elastic.co/guide/en/elasticsearch/reference/current/brew.html#brew) or [Elasticsearch for Linux](https://www.elastic.co/guide/en/elasticsearch/reference/current/deb.html)
+[ImageMagick](https://imagemagick.org/script/download.php)
+[RTesseract](https://github.com/tesseract-ocr/tesseract/wiki)
+[vips](https://github.com/Nakilon/dhash-vips)
 
-* How to run the test suite
+A background Elasticsearch server must be running for document indexing to work, and for tests to run. To start the Elasticsearch server:
 
-* Services (job queues, cache servers, search engines, etc.)
+macOS: `brew services start elastic/tap/elasticsearch-full` or `brew services start elasticsearch`
+Linux: `sudo -i service elasticsearch start`
 
-* Deployment instructions
+Go to `http://localhost:9200/` to verify that it started successfully. You should see something like this:
 
-* ...
+```
+{
+  name: "LAPTOP-OMBO549R",
+  cluster_name: "elasticsearch",
+  cluster_uuid: "KpkpdgWuTVepsCb9dXh42w",
+  version: {
+    number: "7.9.0",
+    build_flavor: "default",
+    build_type: "deb",
+    build_hash: "a479a2a7fce0389512d6a9361301708b92dff667",
+    build_date: "2020-08-11T21:36:48.204330Z",
+    build_snapshot: false,
+    lucene_version: "8.6.0",
+    minimum_wire_compatibility_version: "6.8.0",
+    minimum_index_compatibility_version: "6.0.0-beta1"
+  },
+  tagline: "You Know, for Search"
+}
+```
+
+### Instructions to install and run app
+
+```
+git clone 'https://github.com/bleung9/image_repo.git' bleung9_image_repo
+bundle install
+yarn install --check-files
+
+rake db:create
+rake db:migrate
+```
+
+Run the server with `rails s`.
+Open console with `rails c`.
+Run all tests with `rspec`

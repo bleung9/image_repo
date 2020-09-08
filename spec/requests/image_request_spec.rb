@@ -84,6 +84,12 @@ RSpec.describe "Images", type: :request do
       expect(images == ["sky_1.png", "surprised_pikachu.png"]).to eq(true)
     end
 
+    it "returns no image with text search 'asdfasdf'" do
+      get images_url, params: { search_text: "asdfasdf" }
+
+      expect(assigns(:images).count).to eq(0)
+    end
+
     it "returns one image with text search 'zoom'" do
       get images_url, params: { search_text: "zoom" }
 
