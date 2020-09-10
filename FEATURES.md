@@ -10,7 +10,7 @@ Upon submission, the following will happen:
 
 Users can filter existing images in the database for height, width, extension, and text. The app will handle multiple parameters. For text search, you can enter multiple words separated by spaces (Elasticsearch tokenizes search strings with its standard tokenizer). This will return all images that contain any of those words. However, note that for optimal OCR results, images with white backgrounds and well contrasted text will work best.
 
-Image similarity search is completely separate from the previous filters.
+Image similarity search is completely separate from the previous filters. _Two sample images are included in `/public/sample_similar_images`._ Simply upload one to the database, and submit the other in the image similarity filter. If you want to test this further, you can also take two of your own selfies or pictures.
 
 Note that because this is a backend position I'm applying for, the interface is quite barebones.
 
